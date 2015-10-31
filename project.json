@@ -1,0 +1,23 @@
+{
+    "project_type": "javascript",
+
+    "debugMode" : 1,
+    "showFPS" : false,
+    "frameRate" : 60,
+    "id" : "gameCanvas",
+    "renderMode" : 0,
+    "engineDir":"frameworks/cocos2d-html5",
+
+    "modules" : ["cocos2d"],
+
+    "jsList" : [
+        "src/app.js", 
+        "src/config.js",
+        "src/resource.js",
+        "src/maps/base.js",
+        "src/models/frameset.js",
+        "src/entities/hero.js",
+        "src/helpers/pathfinder.js",
+        "src/helpers/gamestate.js"
+    ]
+}
