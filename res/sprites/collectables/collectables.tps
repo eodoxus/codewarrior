@@ -6,7 +6,7 @@
         <key>texturePackerVersion</key>
         <string>3.9.4</string>
         <key>fileName</key>
-        <string>/Users/jgordon/Projects/Jaygo/cocos2d/JSGame01/res/sprites/hero/walking.tps</string>
+        <string>/Users/jason.gordon/Projects/JayGo/JSGame01/res/sprites/collectables/collectables.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -88,9 +88,9 @@
         <key>maxTextureSize</key>
         <QSize>
             <key>width</key>
-            <int>260</int>
+            <int>2048</int>
             <key>height</key>
-            <int>155</int>
+            <int>2048</int>
         </QSize>
         <key>fixedTextureSize</key>
         <QSize>
@@ -121,7 +121,7 @@
             <key>basic</key>
             <struct type="AlgorithmBasicSettings">
                 <key>sortBy</key>
-                <enum type="AlgorithmBasicSettings::SortBy">Name</enum>
+                <enum type="AlgorithmBasicSettings::SortBy">Best</enum>
                 <key>order</key>
                 <enum type="AlgorithmBasicSettings::Order">Ascending</enum>
             </struct>
@@ -147,7 +147,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>walking.plist</filename>
+                <filename>../collectables.plist</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -182,7 +182,7 @@
             <key>trimThreshold</key>
             <uint>1</uint>
             <key>trimMode</key>
-            <enum type="SpriteSettings::TrimMode">Trim</enum>
+            <enum type="SpriteSettings::TrimMode">None</enum>
             <key>heuristicMask</key>
             <false/>
             <key>pivotPoint</key>
@@ -190,58 +190,7 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>images/walking_01.png</filename>
-            <filename>images/walking_02.png</filename>
-            <filename>images/walking_03.png</filename>
-            <filename>images/walking_04.png</filename>
-            <filename>images/walking_05.png</filename>
-            <filename>images/walking_06.png</filename>
-            <filename>images/walking_07.png</filename>
-            <filename>images/walking_08.png</filename>
-            <filename>images/walking_09.png</filename>
-            <filename>images/walking_10.png</filename>
-            <filename>images/walking_11.png</filename>
-            <filename>images/walking_12.png</filename>
-            <filename>images/walking_13.png</filename>
-            <filename>images/walking_14.png</filename>
-            <filename>images/walking_15.png</filename>
-            <filename>images/walking_16.png</filename>
-            <filename>images/walking_17.png</filename>
-            <filename>images/walking_18.png</filename>
-            <filename>images/walking_19.png</filename>
-            <filename>images/walking_20.png</filename>
-            <filename>images/walking_21.png</filename>
-            <filename>images/walking_22.png</filename>
-            <filename>images/walking_23.png</filename>
-            <filename>images/walking_24.png</filename>
-            <filename>images/walking_25.png</filename>
-            <filename>images/walking_26.png</filename>
-            <filename>images/walking_27.png</filename>
-            <filename>images/walking_28.png</filename>
-            <filename>images/walking_29.png</filename>
-            <filename>images/walking_30.png</filename>
-            <filename>images/walking_31.png</filename>
-            <filename>images/walking_32.png</filename>
-            <filename>images/walking_33.png</filename>
-            <filename>images/walking_34.png</filename>
-            <filename>images/walking_35.png</filename>
-            <filename>images/walking_36.png</filename>
-            <filename>images/walking_37.png</filename>
-            <filename>images/walking_38.png</filename>
-            <filename>images/walking_39.png</filename>
-            <filename>images/walking_40.png</filename>
-            <filename>images/walking_41.png</filename>
-            <filename>images/walking_42.png</filename>
-            <filename>images/walking_43.png</filename>
-            <filename>images/walking_44.png</filename>
-            <filename>images/walking_45.png</filename>
-            <filename>images/walking_46.png</filename>
-            <filename>images/walking_47.png</filename>
-            <filename>images/walking_48.png</filename>
-            <filename>images/walking_49.png</filename>
-            <filename>images/walking_50.png</filename>
-            <filename>images/walking_51.png</filename>
-            <filename>images/walking_52.png</filename>
+            <filename>./</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

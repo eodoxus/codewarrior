@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>scroll_writer.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{30,20}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{30,20}}</string>
+                <key>sourceSize</key>
+                <string>{30,20}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>collectables.png</string>
+            <key>size</key>
+            <string>{34,24}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:69257fdd87c324831eee1d712685fc00:28d285ce37de2a8cb156a0fb65eed335:28d89f9b5082c77304b45041a9cad52f$</string>
+            <key>textureFileName</key>
+            <string>collectables.png</string>
+        </dict>
+    </dict>
+</plist>

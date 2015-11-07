@@ -2448,7 +2448,7 @@
   </object>
   <object id="2" name="scroll_writer" type="collectable" x="144" y="80" width="32" height="32">
    <properties>
-    <property name="asset" value="res/sprites/collectables/scroll_writer.png"/>
+    <property name="asset" value="#scroll_writer.png"/>
     <property name="trophy" value="true"/>
    </properties>
   </object>

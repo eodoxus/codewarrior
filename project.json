@@ -6,7 +6,7 @@
     "frameRate" : 60,
     "id" : "gameCanvas",
     "renderMode" : 0,
-    "engineDir":"frameworks/cocos2d-html5",
+    "engineDir":"frameworks/cocos2d-x",
 
     "modules" : ["cocos2d"],
 
@@ -17,6 +17,7 @@
         "src/maps/base.js",
         "src/models/frameset.js",
         "src/entities/hero.js",
+        "src/entities/hud.js",
         "src/helpers/pathfinder.js",
         "src/helpers/gamestate.js"
     ]

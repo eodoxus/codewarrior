@@ -1,27 +1,26 @@
 var Hero = cc.Sprite.extend({
     _elapsed: 0,
     _curFrame: 1,
+    _health: 6,
+    _maxHealth: 6,
     _state: null,
     _pathfinder: null,
     _facingDirection: 'up',
-    _inventory: {},
+    _inventory: [],
     
     ctor: function () {
         this._super("#" + this.getFrameName(this._curFrame));
         this._pathfinder = new PathFinder(App.instance.map);
-        //this.anchorX = 0;
-        this.anchorY = .25;
-        //this.x = 44;//160;
-        //this.y = 180;//12;
         this._state = Hero.states.STOPPED;
+        this.anchorY = .25;
         this.loadSavedState();
     },
 
     loadSavedState: function() {
         if (App.instance.gamestate.contains('hero')) {
             var obj = App.instance.gamestate.getObjectState('hero');
-            for (var iDx in object) {
-                this[iDx] = object[iDx];
+            for (var iDx in obj) {
+                this[iDx] = obj[iDx];
             }
         }
     },
@@ -57,6 +56,14 @@ var Hero = cc.Sprite.extend({
         this._facingDirection = direction;
         var frameName = this.getFrameName(Hero.animations.walking[this._facingDirection].start);
         this.setSpriteFrame(cc.spriteFrameCache.getSpriteFrame(frameName));
+    },
+
+    getMaxHealth: function() {
+        return this._maxHealth;
+    },
+
+    getCurrentHealth: function() {
+        return this._health;
     },
     
     getStoppedFrame: function() {
@@ -104,6 +111,23 @@ var Hero = cc.Sprite.extend({
             prefix += "0";
         }
         return prefix + number + Hero.constants.FRAME_SUFFIX;
+    },
+
+    inventoryContains: function (name) {
+        for (var iDx in this._inventory) {
+            if (this._inventory[iDx].getName() == name) {
+                return true;
+            }
+        }
+        return false;
+    },
+
+    takeDamage: function(hp) {
+        this._health -= hp;
+    },
+
+    heal: function(hp) {
+        this._health += hp;
     },
     
     walkTo: function(destination) {
@@ -164,8 +188,7 @@ var Hero = cc.Sprite.extend({
     },
     
     collect: function(item, callback) {
-        this._inventory.collectables = this._inventory.collectables || [];
-        this._inventory.collectables.push(item);
+        this._inventory.push(item);
         if (item.isTrophy()) {
             var self = this;
             this.stop(function(){

@@ -1,7 +1,9 @@
 var App = cc.Layer.extend({
     gamestate: null,
     hero: null,
+    hud: null,
     map: null,
+    pack: null,
     transitioning: false,
     heroWalkingBatch: null,
     
@@ -22,20 +24,36 @@ var App = cc.Layer.extend({
     },
     
     initAssets: function() {
+        // Overworld map
         this.map = new Map(res.maps_overworld);
         this.map.init();
         this.addChild(this.map);
 
+        // Hero walking
         cc.spriteFrameCache.addSpriteFrames(res.hero_animations_walking_plist);
         var texHeroWalking = cc.textureCache.addImage(res.hero_animations_walking_frames);
         this.heroWalkingBatch = new cc.SpriteBatchNode(texHeroWalking);
         this.addChild(this.heroWalkingBatch);
-        
+
         this.hero = new Hero();
         this.hero.setPosition(this.map.getHeroSpawnPoint());
         this.heroWalkingBatch.addChild(this.hero);
 
-        this.scheduleUpdate();
+        // HUD
+        cc.spriteFrameCache.addSpriteFrames(res.hud_plist);
+        var texHud = cc.textureCache.addImage(res.hud_frames);
+        var hudBatch = new cc.SpriteBatchNode(texHud);
+        this.addChild(hudBatch);
+
+        // Collectables
+        cc.spriteFrameCache.addSpriteFrames(res.collectables_plist);
+        var texCollectables = cc.textureCache.addImage(res.collectables_frames);
+        var collectablesBatch = new cc.SpriteBatchNode(texCollectables);
+        this.addChild(collectablesBatch);
+
+
+        this.hud = new Hud();
+        this.addChild(this.hud);
     },
     
     transitionMap: function(doorway) {
@@ -46,8 +64,8 @@ var App = cc.Layer.extend({
             this.removeChild(this.map, true);
             this.map = new Map(res["maps_" + doorway.getDestination()]);
             this.addChild(this.map);
-            this.reorderChild(this.map, 0);
-            this.setLocalZOrder(0);
+            //this.reorderChild(this.map, 0);
+            //this.setLocalZOrder(0);
             this.map.init();
             
             this.hero.setPosition(doorway.getDestinationSpawnPoint());
@@ -55,11 +73,22 @@ var App = cc.Layer.extend({
             this.hero.runAction(cc.fadeIn(1));
             this.reorderChild(this.heroWalkingBatch, 1);
             this.heroWalkingBatch.setLocalZOrder(1);
+            
+            this.reorderChild(this.hud, 1);
+            
             this.transitioning = false;
         }, this);
 
         this.hero.runAction(new cc.Sequence(cc.fadeOut(1), afterFadeOut));
         this.saveGame();
+    },
+
+    showPack: function() {
+        console.log('show pack');
+    },
+
+    hidePack: function() {
+        console.log('hide pack');
     },
     
     initInputListeners: function() {
@@ -110,6 +139,8 @@ var App = cc.Layer.extend({
                 this.map.removeCollectable(collectable);
                 var self = this;
                 this.hero.collect(collectable, function() {
+                    self.hero.takeDamage(1);
+                    self.hud.draw();
                     self.saveGame();
                     self.map.removeChild(collectable.getSprite(), true);
                 });
@@ -125,7 +156,14 @@ var App = cc.Layer.extend({
         if (this.transitioning) {
             return;
         }
-        var tile = this.map.tileAt(touch.getLocation());
+        var touchLocation = touch.getLocation();
+        var hudItem = this.hud.itemAt(touchLocation);
+        if (hudItem) {
+            hudItem.handleTouch(touchLocation);
+            return;
+        }
+
+        var tile = this.map.tileAt(touchLocation);
         if ( ! tile) {
             return;
         }

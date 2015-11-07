@@ -139,7 +139,8 @@ var Map = cc.TMXTiledMap.extend({
     saveState: function() {
         var iDx = 0;
         for (; iDx < this._collectables.length; iDx++ ) {
-            App.instance.gamestate.updateObjectState(this.getName() + '::' + this._collectables[iDx].id, this._collectables[iDx]);
+            this._collectables[iDx].setMapName(this.getName());
+            this._collectables[iDx].saveState();
         }
     }
 });
@@ -225,6 +226,18 @@ var MapObject = cc.Class.extend({
 
     isAlive: function() {
         return this.state != MapObject.states.DEAD;
+    },
+
+    setMapName: function(mapName) {
+        this.mapName = mapName;
+    },
+    
+    saveState: function() {
+        var data = {};
+        data.x = this.x;
+        data.y = this.y;
+        data.state = this.state;
+        App.instance.gamestate.updateObjectState(this.mapName + '::' + this.id, data);
     }
 });
 
