@@ -4,10 +4,10 @@
   <property name="name" value="overworld"/>
  </properties>
  <tileset firstgid="1" name="overworld" tilewidth="8" tileheight="8" tilecount="8645">
-  <image source="../tilesets/overworld.png" width="760" height="728"/>
+  <image source="overworld.png" width="760" height="728"/>
  </tileset>
  <tileset firstgid="8646" name="meta" tilewidth="8" tileheight="8" tilecount="1369">
-  <image source="../tilesets/meta.png" width="300" height="300"/>
+  <image source="meta.png" width="300" height="300"/>
   <tile id="0">
    <properties>
     <property name="collidable" value="true"/>

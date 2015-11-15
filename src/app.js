@@ -32,6 +32,7 @@ var App = cc.Layer.extend({
         // Hero walking
         cc.spriteFrameCache.addSpriteFrames(res.hero_animations_walking_plist);
         var texHeroWalking = cc.textureCache.addImage(res.hero_animations_walking_frames);
+        texHeroWalking.setAliasTexParameters();
         this.heroWalkingBatch = new cc.SpriteBatchNode(texHeroWalking);
         this.addChild(this.heroWalkingBatch);
 
@@ -42,12 +43,14 @@ var App = cc.Layer.extend({
         // HUD
         cc.spriteFrameCache.addSpriteFrames(res.hud_plist);
         var texHud = cc.textureCache.addImage(res.hud_frames);
+        texHud.setAliasTexParameters();
         var hudBatch = new cc.SpriteBatchNode(texHud);
         this.addChild(hudBatch);
 
         // Collectables
         cc.spriteFrameCache.addSpriteFrames(res.collectables_plist);
         var texCollectables = cc.textureCache.addImage(res.collectables_frames);
+        texCollectables.setAliasTexParameters();
         var collectablesBatch = new cc.SpriteBatchNode(texCollectables);
         this.addChild(collectablesBatch);
 
@@ -96,10 +99,10 @@ var App = cc.Layer.extend({
             cc.eventManager.addListener({
                 event: cc.EventListener.KEYBOARD,
                 onKeyPressed:function (key, event) {
-                    MW.KEYS[key] = true;
+                    APP.KEYS[key] = true;
                 },
                 onKeyReleased:function (key, event) {
-                    MW.KEYS[key] = false;
+                    APP.KEYS[key] = false;
                 }
             }, this);
         }
@@ -127,19 +130,18 @@ var App = cc.Layer.extend({
 
     update: function(dt) {
         var tile = this.map.tileAt(this.hero.getPosition());
-        if ( ! this.transitioning && tile.isTransitional()) {
+        if ( ! this.transitioning && tile && tile.isTransitional()) {
             var doorway = this.map.doorwayAt(this.hero.getPosition());
             if (doorway) {
                 this.hero.stop();
                 this.transitionMap(doorway);
             }
-        } else if (tile.isCollectable()) {
+        } else if (tile && tile.isCollectable()) {
             var collectable = this.map.collectableAt(this.hero.getPosition());
             if (collectable) {
                 this.map.removeCollectable(collectable);
                 var self = this;
                 this.hero.collect(collectable, function() {
-                    self.hero.takeDamage(1);
                     self.hud.draw();
                     self.saveGame();
                     self.map.removeChild(collectable.getSprite(), true);

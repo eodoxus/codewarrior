@@ -8,13 +8,14 @@ var GameState = cc.Class.extend({
         this.file = this.dirName + this.name + ".json";
     },
     save: function() {
+        if (typeof(jsb) == 'undefined') return;
         if ( ! jsb.fileUtils.isDirectoryExist(this.dirName)) {
             jsb.fileUtils.createDirectory(this.dirName);
         }
         jsb.fileUtils.writeStringToFile(JSON.stringify(this.data), this.file);
     },
     load: function() {
-return;
+        if (typeof(jsb) == 'undefined') return;
         if (jsb.fileUtils.isFileExist(this.file)) {
             var data = jsb.fileUtils.getStringFromFile(this.file);
             try {

@@ -4,10 +4,10 @@
   <property name="name" value="cave"/>
  </properties>
  <tileset firstgid="1" name="overworld" tilewidth="8" tileheight="8" tilecount="8645">
-  <image source="../tilesets/overworld.png" width="760" height="728"/>
+  <image source="overworld.png" width="760" height="728"/>
  </tileset>
  <tileset firstgid="8646" name="meta" tilewidth="8" tileheight="8" tilecount="1369">
-  <image source="../tilesets/meta.png" width="300" height="300"/>
+  <image source="meta.png" width="300" height="300"/>
   <tile id="0">
    <properties>
     <property name="collidable" value="true"/>
@@ -1231,8 +1231,8 @@
  <layer name="meta" width="40" height="30">
   <properties>
    <property name="music_ambient" value="res/music/cave.ogg"/>
-   <property name="sound_enter" value="res/sounds/cave_enter.ogg"/>
-   <property name="sound_exit" value="res/sounds/cave_exit.ogg"/>
+   <property name="sound_enter" value="res/sound/cave_enter.ogg"/>
+   <property name="sound_exit" value="res/sound/cave_exit.ogg"/>
   </properties>
   <data>
    <tile gid="0"/>
