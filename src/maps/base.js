@@ -40,7 +40,6 @@ var Map = cc.TMXTiledMap.extend({
     },
     
     init: function() {
-        this.playEntranceSound();
         this.playAmbientMusic();
     },
     
@@ -114,14 +113,6 @@ var Map = cc.TMXTiledMap.extend({
         this.playMusic('ambient');
     },
 
-    playExitSound: function() {
-        this.playSound('exit');
-    },
-
-    playEntranceSound: function() {
-        this.playSound('enter');
-    },
-    
     playSound: function(name) {
         var sound = this._metaLayer.getProperties()['sound_' + name];
         if (sound) {
@@ -257,7 +248,14 @@ var Doorway = MapObject.extend({
 
     getSpawnDirection: function() {
         return this.spawnDirection;
-    }
+    },
+
+    playSound: function(name) {
+        var sound = this.sound;
+        if (sound) {
+            cc.audioEngine.playEffect(sound);
+        }
+    },
 });
 
 var Collectable = MapObject.extend({

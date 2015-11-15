@@ -61,21 +61,18 @@ var App = cc.Layer.extend({
     
     transitionMap: function(doorway) {
         this.transitioning = true;
-        this.map.playExitSound();
+        doorway.playSound();
         
         var afterFadeOut = new cc.CallFunc(function(){
             this.removeChild(this.map, true);
             this.map = new Map(res["maps_" + doorway.getDestination()]);
             this.addChild(this.map);
-            //this.reorderChild(this.map, 0);
-            //this.setLocalZOrder(0);
             this.map.init();
             
             this.hero.setPosition(doorway.getDestinationSpawnPoint());
             this.hero.setFacingDirection(doorway.getSpawnDirection());
             this.hero.runAction(cc.fadeIn(1));
             this.reorderChild(this.heroWalkingBatch, 1);
-            this.heroWalkingBatch.setLocalZOrder(1);
             
             this.reorderChild(this.hud, 1);
             
@@ -87,11 +84,16 @@ var App = cc.Layer.extend({
     },
 
     showPack: function() {
-        console.log('show pack');
+        this.packShowing = true;
+        this.scroll = new cc.Sprite(res.scroll_sprite);
+        //this.scroll.setScale(.9, .9);
+        this.scroll.setPosition(cc.p(winSize.width / 2, winSize.height / 2));
+        this.addChild(this.scroll, 2);
     },
 
     hidePack: function() {
-        console.log('hide pack');
+        this.removeChild(this.scroll, true);
+        this.packShowing = false;
     },
     
     initInputListeners: function() {
@@ -162,6 +164,10 @@ var App = cc.Layer.extend({
         var hudItem = this.hud.itemAt(touchLocation);
         if (hudItem) {
             hudItem.handleTouch(touchLocation);
+            return;
+        }
+
+        if (this.packShowing) {
             return;
         }
 

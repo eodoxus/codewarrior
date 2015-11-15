@@ -2441,6 +2441,7 @@
   <object id="2" name="cave_entrance" type="doorway" x="40" y="8" width="16" height="23.8659">
    <properties>
     <property name="destination" value="cave"/>
+    <property name="sound" value="res/sound/cave_enter.ogg"/>
     <property name="spawnDirection" value="up"/>
     <property name="spawnX" value="164"/>
     <property name="spawnY" value="20"/>

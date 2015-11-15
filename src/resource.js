@@ -10,7 +10,8 @@ var res = {
     hud_frames: "res/sprites/hud.png",
     maps_cave: "res/maps/cave.tmx",
     music_overworld: "res/music/overworld.ogg",
-    music_cave: "res/music/cave.ogg"
+    music_cave: "res/music/cave.ogg",
+    scroll_sprite: "res/sprites/scroll_screen.png",
 };
 
 var g_resources = [];

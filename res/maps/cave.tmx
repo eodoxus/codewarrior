@@ -1231,8 +1231,6 @@
  <layer name="meta" width="40" height="30">
   <properties>
    <property name="music_ambient" value="res/music/cave.ogg"/>
-   <property name="sound_enter" value="res/sound/cave_enter.ogg"/>
-   <property name="sound_exit" value="res/sound/cave_exit.ogg"/>
   </properties>
   <data>
    <tile gid="0"/>
@@ -2441,6 +2439,7 @@
   <object id="1" name="overworld_entrance" type="doorway" x="0" y="224" width="320" height="16">
    <properties>
     <property name="destination" value="overworld"/>
+    <property name="sound" value="res/sound/cave_exit.ogg"/>
     <property name="spawnDirection" value="down"/>
     <property name="spawnX" value="44"/>
     <property name="spawnY" value="204"/>
